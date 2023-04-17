@@ -5,38 +5,44 @@
   <title>Tittle</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/admin/new/}"  th:object="${newuser}" >
+<form th:method="POST" th:action="@{/admin/new/}" >
 
   <div>
     <p>Имя</p>
-    <input th:field="*{username}"/>
+    <input  th:object="${newuser}" th:field="*{username}"/>
   </div>
 
   <div>
     <p>Фамилия</p>
-    <input th:field="*{lastname}" />
+    <input  th:object="${newuser}" th:field="*{lastname}" />
   </div>
 
   <div>
     <p>Возраст</p>
-    <input th:field="*{age}"/>
+    <input  th:object="${newuser}" th:field="*{age}"/>
   </div>
   <div>
     <p>Адресс</p>
-    <input th:field="*{email}"/>
+    <input  th:object="${newuser}" th:field="*{email}"/>
   </div>
   <div>
     <p>Пароль</p>
-    <input th:field="*{password}"/>
+    <input  th:object="${newuser}" th:field="*{password}"/>
   </div>
   <div>
     <p>Роль</p>
-    <input th:object="${role}" th:field="*{roles}"/>
+    <input  th:object="${newuser}" th:field="*{roles}"/>
   </div>
   <div>
     <div>
       <button type="submit">Готово</button>
     </div>
+  </div>
+</form>
+<form th:method="POST" th:action="@{/admin/new/}">
+  <input  th:object="${role}" th:field="*{roles}"/>
+  <div>
+    <button type="submit">Готово</button>
   </div>
 </form>
 <div th:insert="~{logout :: copy}"></div>

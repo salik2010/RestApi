@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,11 +41,10 @@ public class User {
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName="id")
     )
-    @Column(name = "roles")
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<Role>();
 
     @Override
     public String toString() {
@@ -107,15 +107,15 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
-    public User(Long id, String username, String lastname, int age, String email, String password, List<Role> roles) {
+    public User(Long id, String username, String lastname, int age, String email, String password, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.lastname = lastname;

@@ -35,10 +35,11 @@ public class UserServiceImp implements UserService {
         return roleJpaRepository.findAll();
     }
     @Transactional
-    public void newUser(User user, Role role){
-        userJpaRepository.save(user);
+    public void newUser(Role role){
+
         roleJpaRepository.save(role);
     }
+
     @Transactional
     public void deleteUser(Long id){
         userJpaRepository.deleteById(id);

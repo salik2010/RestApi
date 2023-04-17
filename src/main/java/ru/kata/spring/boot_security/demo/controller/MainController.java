@@ -33,26 +33,26 @@ public class MainController {
     @GetMapping("/admin")
     public String adminPage(Principal principal, Model model) {
         List<User> allUser=userService.getAll();
-
+        List<Role> roleall=userService.getRole();
         model.addAttribute("users",allUser);
-
+        model.addAttribute("allroles",roleall);
         model.addAttribute("name",principal);
         return "admin";
     }
     @GetMapping("/admin/new")
     public String newUser(Model model) {
-        User user = new User();
-        Role role =new Role();
-        model.addAttribute("role",role);
-        model.addAttribute("newuser",user);
+
+        model.addAttribute("role",new Role());
+        model.addAttribute("newuser",new User());
         return "new";
     }
     @PostMapping("/admin/new")
-    public String newUserPost(@ModelAttribute("newuser") User user,Role role){
-        userService.newUser(user,role);
+    public String newUserPost(@ModelAttribute("role") Role role){
+        userService.newUser(role);
 
         return "redirect:/admin";
     }
+
     @PatchMapping("/admin/edit/{id}")
     public String editUser(@PathVariable(value = "id") Long id, Model model) {
         User user = userService.getById(id);
