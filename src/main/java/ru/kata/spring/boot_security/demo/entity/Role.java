@@ -5,20 +5,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.Collection;
 
 @Entity
-@Table(name = "Role")
+@Table(name = "roles")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "roles")
+    private String roles;
+
+    public Role(Long id, String roles) {
+        this.id = id;
+        this.roles = roles;
+    }
 
     public Role() {
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roles='" + roles + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -29,16 +45,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Role(Long id, String role) {
-        this.id = id;
-        this.role = role;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

@@ -5,11 +5,11 @@
   <title>Tittle</title>
 </head>
 <body>
-<form  th:object="${newuser}" method="post" >
+<form th:method="POST" th:action="@{/admin/new/}"  th:object="${newuser}" >
 
   <div>
     <p>Имя</p>
-    <input th:field="*{name}"/>
+    <input th:field="*{username}"/>
   </div>
 
   <div>
@@ -23,7 +23,15 @@
   </div>
   <div>
     <p>Адресс</p>
-    <input th:field="*{address}"/>
+    <input th:field="*{email}"/>
+  </div>
+  <div>
+    <p>Пароль</p>
+    <input th:field="*{password}"/>
+  </div>
+  <div>
+    <p>Роль</p>
+    <input th:object="${role}" th:field="*{roles}"/>
   </div>
   <div>
     <div>
@@ -31,5 +39,6 @@
     </div>
   </div>
 </form>
+<div th:insert="~{logout :: copy}"></div>
 </body>
 </html>

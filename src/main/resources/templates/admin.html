@@ -12,23 +12,26 @@
             <th>Имя</th>
             <th>Фамилия</th>
             <th>Возраст</th>
-            <th>Адресс</th>
+            <th>Email</th>
+            <th>Роль</th>
+
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
+            <td th:text="${user.username}"></td>
             <td th:text="${user.lastname}"></td>
             <td th:text="${user.age}"></td>
-            <td th:text="${user.address}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.roles}"></td>
             <td>
 
-                <form th:method="DELETE" th:action="@{'/delete/' + ${user.id}}" th:object="${user}">
+                <form th:method="DELETE" th:action="@{'/admin/delete/' + ${user.id}}" th:object="${user}">
                     <input type="hidden" name="id" th:value="${user.id}">
                     <button type="submit">Удалить</button>
                 </form>
             </td>
             <td>
-                <form th:method="PATCH" th:action="@{'/edit/' + ${user.id}}" th:object="${user}">
+                <form th:method="PATCH" th:action="@{'/admin/edit/' + ${user.id}}" th:object="${user}">
                     <button type="submit">Изменить</button>
                 </form>
             </td>
@@ -37,11 +40,11 @@
     </table>
     <br>
 
-    <form th:method="PUT" th:action="@{/admin/new}" >
+    <form  th:action="@{/admin/new/}" >
 
         <button type="submit">Добавить пользователя</button>
     </form>
-
+    <div th:insert="~{logout :: copy}"></div>
 </div>
 </body>
 </html>
