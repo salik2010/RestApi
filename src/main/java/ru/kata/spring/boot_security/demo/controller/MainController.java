@@ -47,8 +47,8 @@ public class MainController {
         return "new";
     }
     @PostMapping("/admin/new")
-    public String newUserPost(@ModelAttribute("role") Role role){
-        userService.newUser(role);
+    public String newUserPost(@ModelAttribute("newuser") User user,@ModelAttribute("role") Role role){
+        userService.newUser(user,role);
 
         return "redirect:/admin";
     }
