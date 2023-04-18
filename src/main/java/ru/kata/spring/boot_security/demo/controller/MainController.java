@@ -29,7 +29,13 @@ public class MainController {
     public String authenticatedPage(Principal principal) {
         return "user";
     }
+    @GetMapping("/")
+    public String index(Principal principal, Model model) {
 
+        model.addAttribute("principal1",principal.getName());
+
+        return "index";
+    }
     @GetMapping("/admin")
     public String adminPage(Principal principal, Model model) {
         List<User> allUser=userService.getAll();
@@ -42,14 +48,14 @@ public class MainController {
     @GetMapping("/admin/new")
     public String newUser(Model model) {
 
-        model.addAttribute("role",new Role());
         model.addAttribute("newuser",new User());
         return "new";
     }
     @PostMapping("/admin/new")
-    public String newUserPost(@ModelAttribute("newuser") User user,@ModelAttribute("role") Role role){
-        userService.newUser(user,role);
+    public String newUserPost(@ModelAttribute("newuser") User user){
 
+        userService.newUser(user);
+        userService.addRole(new Role(2L,"ROLE_USER"));
         return "redirect:/admin";
     }
 
