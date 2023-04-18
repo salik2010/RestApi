@@ -78,8 +78,21 @@ public class MainController {
         return "edit";
     }
     @PostMapping("/admin/edit")
-    public String editUserPost(User user){
-        userService.editUser(user);
+    public String editUserPost(@ModelAttribute("edituser") User user){
+
+        for (Role role : user.getRoles()) {
+            user.addRole(role);
+
+            System.out.println(user +  "Я Тут !!!");
+        }
+
+
+        userService.newUser(user);
+
+
+       // role.setId(roleDao.findRoleByAuthority(role.getAuthority()).getId());
+        //user.addRole((Role) user.getRoles());
+
         return "redirect:/admin";
     }
     @DeleteMapping("/admin/delete/{id}")

@@ -63,6 +63,7 @@ public class UserServiceImp implements UserService,UserDetailsService {
     }
     @Transactional
     public User editUser(User user){
+
         return userJpaRepository.save(user);
     }
     public User getById(Long id){
