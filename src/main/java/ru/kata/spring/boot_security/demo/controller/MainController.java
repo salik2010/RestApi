@@ -57,13 +57,13 @@ public class MainController {
     }
     @GetMapping("/admin/new")
     public String newUser(Model model) {
-
+        model.addAttribute("rolles",userService.getRole());
         model.addAttribute("newuser",new User());
         return "new";
     }
     @PostMapping("/admin/new")
-    public String newUserPost(@ModelAttribute("newuser") User user){
-        user.addRole(new Role(1L,"ROLE_USER"));
+    public String newUserPost(@ModelAttribute("newuser") User user) {
+
         userService.newUser(user);
 
         return "redirect:/admin";
@@ -80,18 +80,7 @@ public class MainController {
     @PostMapping("/admin/edit")
     public String editUserPost(@ModelAttribute("edituser") User user){
 
-        for (Role role : user.getRoles()) {
-            user.addRole(role);
-
-            System.out.println(user +  "Я Тут !!!");
-        }
-
-
-        userService.newUser(user);
-
-
-       // role.setId(roleDao.findRoleByAuthority(role.getAuthority()).getId());
-        //user.addRole((Role) user.getRoles());
+        userService.editUser(user);
 
         return "redirect:/admin";
     }

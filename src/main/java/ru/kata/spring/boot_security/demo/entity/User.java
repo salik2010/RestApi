@@ -49,10 +49,7 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName="id")
     )
     private Set<Role> roles = new HashSet<Role>();
-    public void addRole(Role role) {
-        roles.add(role);
-        role.getUsers().add(this);
-    }
+
     @Override
     public String toString() {
         return "User{" +

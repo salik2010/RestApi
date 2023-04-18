@@ -27,12 +27,6 @@ public class Role implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-    @JoinTable(name="users_roles",
-            joinColumns=  @JoinColumn(name="role_id", referencedColumnName="id"),
-            inverseJoinColumns= @JoinColumn(name="user_id", referencedColumnName="id") )
-    private Set<User> users = new HashSet<User>();
-
     public Role(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -66,26 +60,7 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(id, role.id) && Objects.equals(name, role.name) && Objects.equals(users, role.users);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, users);
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 
     @Override
     public String toString() {

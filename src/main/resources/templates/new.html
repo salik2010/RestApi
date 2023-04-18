@@ -30,7 +30,14 @@
     <input   th:field="*{password}"/>
 <!--    <input type="hidden" name="name" value="Vasya">-->
   </div>
-
+  <label>Roles:
+    <input type="checkbox" name="roles"
+           th:each="role : ${rolles}"
+           th:text="${role.name}"
+           th:value="${role.id}"
+           th:field="*{roles}"
+    />
+  </label>
   <div>
     <div>
       <button type="submit">Готово</button>

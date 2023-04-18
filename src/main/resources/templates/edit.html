@@ -6,31 +6,31 @@
 </head>
 <body>
 <form th:action="@{/admin/edit}" th:object="${edituser}" method="post">
-  <input th:field="*{id}" type="hidden" name="id" th:value="${edituser.getId()}">
+  <input th:field="*{id}" type="hidden"  th:value="${edituser.getId()}">
   <p>Данные пользователя</p>
   <p>
-    <label th:for="name">Имя</label>
-    <input th:field="*{username}" type="text" name="name" th:id="name" th:value="${edituser.getUsername()}">
+    <label>Имя</label>
+    <input th:field="*{username}" type="text"  th:value="${edituser.getUsername()}">
     <br/>
   </p>
   <p>
-    <label th:for="lastName">Фамилия</label>
-    <input th:field="*{lastname}" type="text" name="lastName" th:id="lastName" th:value="${edituser.getLastname()}">
+    <label >Фамилия</label>
+    <input th:field="*{lastname}" type="text"  th:value="${edituser.getLastname()}">
     <br/>
   </p>
   <p>
-    <label th:for="age">Возраст</label>
-    <input th:field="*{age}" type="text" name="age" th:id="age" th:value="${edituser.getAge()}">
+    <label >Возраст</label>
+    <input th:field="*{age}" type="text"  th:value="${edituser.getAge()}">
     <br/>
   </p>
   <p>
-    <label th:for="email">Адресс</label>
-    <input th:field="*{email}" type="text" name="email" th:id="email" th:value="${edituser.getEmail()}">
+    <label >Адресс</label>
+    <input th:field="*{email}" type="text"  th:value="${edituser.getEmail()}">
     <br/>
   </p>
   <p>
-    <label th:for="password">Пароль</label>
-    <input th:field="*{password}" type="text" name="password" th:id="password" th:value="${edituser.getPassword()}">
+    <label >Пароль</label>
+    <input th:field="*{password}" type="text"  th:value="${edituser.getPassword()}">
     <br/>
   </p>
   <p>

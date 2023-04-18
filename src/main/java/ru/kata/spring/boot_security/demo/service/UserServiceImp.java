@@ -51,7 +51,7 @@ public class UserServiceImp implements UserService,UserDetailsService {
         if (userFromDB.isPresent()) {
             return false;
         }
-        //user.setRoles(Collections.singleton(new Role( 1L,"ROLE_USER")));
+
         user.setPassword(user.getPassword());
         userJpaRepository.save(user);
         return true;
