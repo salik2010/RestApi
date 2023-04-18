@@ -20,6 +20,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -72,6 +73,8 @@ public class MainController {
     public String editUser(@PathVariable(value = "id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("edituser",user);
+        model.addAttribute("rolles",userService.getRole());
+
         return "edit";
     }
     @PostMapping("/admin/edit")

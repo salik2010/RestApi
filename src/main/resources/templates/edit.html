@@ -25,7 +25,7 @@
   </p>
   <p>
     <label th:for="email">Адресс</label>
-    <input th:field="*{email}" type="text" name="address" th:id="address" th:value="${edituser.getEmail()}">
+    <input th:field="*{email}" type="text" name="email" th:id="email" th:value="${edituser.getEmail()}">
     <br/>
   </p>
   <p>
@@ -34,8 +34,14 @@
     <br/>
   </p>
   <p>
-    <label th:for="roles">Роли</label>
-    <input th:field="*{roles}" type="text" name="roles" th:id="roles" th:value="${edituser.getRoles()}">
+    <label>Roles:
+      <input type="checkbox" name="roles"
+             th:each="role : ${rolles}"
+             th:text="${role.name}"
+             th:value="${role.id}"
+             th:field="*{roles}"
+      />
+    </label>
     <br/>
   </p>
   <button type="submit">Изменить данные</button>
