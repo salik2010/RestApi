@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,7 +11,6 @@ import ru.kata.spring.boot_security.demo.repository.RoleJpaRepository;
 import ru.kata.spring.boot_security.demo.repository.UserJpaRepository;
 import ru.kata.spring.boot_security.demo.security.SecurityUserDetails;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,15 +39,19 @@ public class UserServiceImp implements UserService,UserDetailsService {
     public void newUser(User user, Role role) {
 
     }
+    public User selectUser(String name){
+        return userJpaRepository.findUserByUsername(name);
+    }
+
 
     @Transactional
     public boolean newUser(User user){
         Optional<User> userFromDB = userJpaRepository.findByUsername(user.getUsername());
 
-        if (userFromDB != null) {
+        if (userFromDB.isPresent()) {
             return false;
         }
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        //user.setRoles(Collections.singleton(new Role( 1L,"ROLE_USER")));
         user.setPassword(user.getPassword());
         userJpaRepository.save(user);
         return true;

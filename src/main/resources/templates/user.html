@@ -6,15 +6,18 @@
             <th>Имя</th>
             <th>Фамилия</th>
             <th>Возраст</th>
-            <th>Адресс</th>
-        </tr>
-        <tr th:each="user : ${user}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.lastname}"></td>
-            <td th:text="${user.age}"></td>
-            <td th:text="${user.address}"></td>
+            <th>Email</th>
+            <th>Роль</th>
 
+        </tr>
+        <tr>
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getLastname()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getRoles()}"></td>
+            <td>
         </tr>
     </table>
     <br>

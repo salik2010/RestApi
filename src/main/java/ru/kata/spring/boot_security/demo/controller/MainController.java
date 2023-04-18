@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,10 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
 
+import ru.kata.spring.boot_security.demo.security.SecurityUserDetails;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -26,7 +30,10 @@ public class MainController {
     }
 
     @GetMapping("/user")
-    public String authenticatedPage(Principal principal) {
+    public String authenticatedPage( Model model,Principal principal) {
+
+        User user = userService.selectUser(principal.getName());
+        model.addAttribute("user",user);
         return "user";
     }
     @GetMapping("/")
@@ -40,6 +47,8 @@ public class MainController {
     public String adminPage(Principal principal, Model model) {
         List<User> allUser=userService.getAll();
         List<Role> roleall=userService.getRole();
+
+
         model.addAttribute("users",allUser);
         model.addAttribute("allroles",roleall);
         model.addAttribute("name",principal);
@@ -53,9 +62,9 @@ public class MainController {
     }
     @PostMapping("/admin/new")
     public String newUserPost(@ModelAttribute("newuser") User user){
-
+        user.addRole(new Role(1L,"ROLE_USER"));
         userService.newUser(user);
-        userService.addRole(new Role(2L,"ROLE_USER"));
+
         return "redirect:/admin";
     }
 

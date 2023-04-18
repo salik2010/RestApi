@@ -22,7 +22,7 @@
             <td th:text="${user.lastname}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
-            <td  th:text="${allroles}"></td>
+            <td th:text="${user.getRoles()}"></td>
             <td>
 
                 <form th:method="DELETE" th:action="@{'/admin/delete/' + ${user.id}}" th:object="${user}">
