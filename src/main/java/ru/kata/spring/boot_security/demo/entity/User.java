@@ -66,7 +66,13 @@ public class User implements UserDetails {
     public Long getId() {
         return id;
     }
-
+    public String getRoleUser(){
+        String r1="";
+        for (Role r :roles) {
+            r1+=" "+r;
+        }
+        return r1;
+    }
     public void setId(Long id) {
         this.id = id;
     }

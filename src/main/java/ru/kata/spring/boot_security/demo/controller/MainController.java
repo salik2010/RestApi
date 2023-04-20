@@ -37,7 +37,7 @@ public class MainController {
         model.addAttribute("user",user);
         return "user";
     }
-    @GetMapping("/")
+    @GetMapping("/1")
     public String index(Principal principal, Model model) {
 
         model.addAttribute("principal1",principal.getName());
@@ -48,7 +48,8 @@ public class MainController {
     public String adminPage(Principal principal, Model model) {
         List<User> allUser=userService.getAll();
         List<Role> roleall=userService.getRole();
-
+        User user = userService.selectUser(principal.getName());
+        model.addAttribute("userRole",user);
 
         model.addAttribute("users",allUser);
         model.addAttribute("allroles",roleall);
