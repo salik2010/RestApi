@@ -32,18 +32,12 @@ public class MainController {
 
     @GetMapping("/user")
     public String authenticatedPage( Model model,Principal principal) {
-
         User user = userService.selectUser(principal.getName());
-        model.addAttribute("user",user);
+        model.addAttribute("userRole",user);
+
         return "user";
     }
-    @GetMapping("/1")
-    public String index(Principal principal, Model model) {
 
-        model.addAttribute("principal1",principal.getName());
-
-        return "index";
-    }
     @GetMapping("/admin")
     public String adminPage(Principal principal, Model model) {
         List<User> allUser=userService.getAll();
@@ -58,12 +52,7 @@ public class MainController {
         model.addAttribute("newuser",new User());
         return "admin";
     }
-//    @GetMapping("/admin/new")
-//    public String newUser(Model model) {
-//        model.addAttribute("rolles",userService.getRole());
-//        model.addAttribute("newuser",new User());
-//        return "new";
-//    }
+
     @PostMapping("/admin")
     public String newUserPost(@ModelAttribute("newuser") User user) {
 
