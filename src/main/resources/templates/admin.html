@@ -76,12 +76,12 @@
 <!-- Таблица -->
                                          <table class="table table-striped">
                                             <tr>
-                                                <th >Id</th>
-                                                <th>Имя</th>
-                                                <th>Фамилия</th>
-                                                <th>Возраст</th>
+                                                <th >ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Age</th>
                                                 <th>Email</th>
-                                                <th>Роль</th>
+                                                <th>Role</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -110,6 +110,61 @@
 
                                             </tr>
                                         </table>
+                            </div>
+                        </div>
+                    </div>
+<!--New User                            -->
+                            <div class="tab-pane fade" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+                                    <div class="panel-heading h4">Add new user</div>
+                                    <div class="panel-body">
+                                        <div class="container">
+                                            <div class="row justify-content-center align-items-center">
+                                                <form class="col-4" >
+                                                    <div class="form-group text-center ">
+                                                        <label class="col-form-label font-weight-bold" for="firstName">First name</label>
+                                                        <input type="text" class="form-control"
+                                                               id="firstName" name="firstName" placeholder="First name"/>
+                                                    </div>
+                                                    <div class="form-group text-center ">
+                                                        <label class="col-form-label font-weight-bold" for="lastName">Last name</label>
+                                                        <input type="text" class="form-control"
+                                                               id="lastName" name="lastName" placeholder="Last name"/>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <label class="col-form-label font-weight-bold" >Age</label>
+                                                        <input type="number" class="form-control"
+                                                               id="age" name="age"
+                                                               placeholder="Age"/>
+                                                    </div>
+
+                                                    <div class="form-group text-center ">
+                                                        <label class="col-form-label font-weight-bold" for="exampleInputEmail1">Email</label>
+                                                        <input type="email"  class="form-control" id="exampleInputEmail1"
+                                                               name="exampleInputEmail1"
+                                                               placeholder="Email">
+                                                    </div>
+                                                    <div class="form-group text-center ">
+                                                        <label class="col-form-label font-weight-bold" for="exampleInputPassword1">Password</label>
+                                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                                               name="exampleInputPassword1" placeholder="Password">
+                                                    </div>
+                                                    <div class="form-group text-center ">
+                                                        <label class="col-form-label font-weight-bold" for="roles">Role</label>
+                                                        <select class="form-control" id="roles" name="roles" multiple size="2">
+<!--                                                            <option th:each="role : ${allRoles}"-->
+<!--                                                                    th:value="${role.name}"-->
+<!--                                                                    th:text="${role.toString()}"></option>-->
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group text-center ">
+                                                        <button type="submit" class="btn btn-success text-white" >Add new user</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
 <!--                                            <br>-->
 
 <!--                                                <form  th:action="@{/admin/new/}" >-->
@@ -117,14 +172,13 @@
 <!--                                                    <button type="submit">Добавить пользователя</button>-->
 <!--                                                </form>-->
 <!--                                                <div th:insert="~{logout :: copy}"></div>-->
-                            </div>
-                                    </div>
-                                </div>
+
+
+
                             </div>
 
 
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
