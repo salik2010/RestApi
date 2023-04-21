@@ -119,41 +119,46 @@
                                     <div class="panel-body">
                                         <div class="container">
                                             <div class="row justify-content-center align-items-center">
-                                                <form class="col-4" >
+                                                <form class="col-4" th:method="POST" th:action="@{/admin/}" th:object="${newuser}">
                                                     <div class="form-group text-center ">
-                                                        <label class="col-form-label font-weight-bold" for="firstName">First name</label>
-                                                        <input type="text" class="form-control"
-                                                               id="firstName" name="firstName" placeholder="First name"/>
+                                                        <label class="col-form-label font-weight-bold" for="username">First name</label>
+                                                        <input th:field="*{username}" type="text" class="form-control"
+                                                               id="username" name="username" placeholder="First name"/>
                                                     </div>
                                                     <div class="form-group text-center ">
-                                                        <label class="col-form-label font-weight-bold" for="lastName">Last name</label>
-                                                        <input type="text" class="form-control"
+                                                        <label class="col-form-label font-weight-bold" for="lastname">Last name</label>
+                                                        <input th:field="*{lastname}" type="text" class="form-control"
                                                                id="lastName" name="lastName" placeholder="Last name"/>
                                                     </div>
                                                     <div class="form-group text-center">
                                                         <label class="col-form-label font-weight-bold" >Age</label>
-                                                        <input type="number" class="form-control"
+                                                        <input th:field="*{age}" type="number" class="form-control"
                                                                id="age" name="age"
                                                                placeholder="Age"/>
                                                     </div>
 
                                                     <div class="form-group text-center ">
-                                                        <label class="col-form-label font-weight-bold" for="exampleInputEmail1">Email</label>
-                                                        <input type="email"  class="form-control" id="exampleInputEmail1"
-                                                               name="exampleInputEmail1"
+                                                        <label class="col-form-label font-weight-bold" for="email">Email</label>
+                                                        <input th:field="*{email}" type="email"  class="form-control" id="email"
+                                                               name="email"
                                                                placeholder="Email">
                                                     </div>
                                                     <div class="form-group text-center ">
-                                                        <label class="col-form-label font-weight-bold" for="exampleInputPassword1">Password</label>
-                                                        <input type="text" class="form-control" id="exampleInputPassword1"
-                                                               name="exampleInputPassword1" placeholder="Password">
+                                                        <label class="col-form-label font-weight-bold" for="password">Password</label>
+                                                        <input th:field="*{password}" type="text" class="form-control" id="password"
+                                                               name="password" placeholder="Password">
                                                     </div>
                                                     <div class="form-group text-center ">
                                                         <label class="col-form-label font-weight-bold" for="roles">Role</label>
                                                         <select class="form-control" id="roles" name="roles" multiple size="2">
-<!--                                                            <option th:each="role : ${allRoles}"-->
-<!--                                                                    th:value="${role.name}"-->
-<!--                                                                    th:text="${role.toString()}"></option>-->
+
+                                                            <option th:each="role : ${allroles}"
+                                                                    th:value="${role.id}"
+                                                                    th:text="${role.toString()}"
+                                                                    th:field="*{roles}"
+                                                                    >
+
+                                                            </option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group text-center ">

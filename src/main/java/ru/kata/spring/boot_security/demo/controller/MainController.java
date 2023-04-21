@@ -54,15 +54,17 @@ public class MainController {
         model.addAttribute("users",allUser);
         model.addAttribute("allroles",roleall);
         model.addAttribute("name",principal);
-        return "admin";
-    }
-    @GetMapping("/admin/new")
-    public String newUser(Model model) {
         model.addAttribute("rolles",userService.getRole());
         model.addAttribute("newuser",new User());
-        return "new";
+        return "admin";
     }
-    @PostMapping("/admin/new")
+//    @GetMapping("/admin/new")
+//    public String newUser(Model model) {
+//        model.addAttribute("rolles",userService.getRole());
+//        model.addAttribute("newuser",new User());
+//        return "new";
+//    }
+    @PostMapping("/admin")
     public String newUserPost(@ModelAttribute("newuser") User user) {
 
         userService.newUser(user);
