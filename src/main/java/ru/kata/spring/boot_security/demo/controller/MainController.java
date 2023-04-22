@@ -43,6 +43,7 @@ public class MainController {
         List<User> allUser=userService.getAll();
         List<Role> roleall=userService.getRole();
         User user = userService.selectUser(principal.getName());
+
         model.addAttribute("userRole",user);
 
         model.addAttribute("users",allUser);
@@ -61,22 +62,14 @@ public class MainController {
         return "redirect:/admin";
     }
 
-    @PatchMapping("/admin/edit/{id}")
-    public String editUser(@PathVariable(value = "id") Long id, Model model) {
-        User user = userService.getById(id);
-        model.addAttribute("edituser",user);
-        model.addAttribute("rolles",userService.getRole());
-
-        return "edit";
-    }
-    @PostMapping("/admin/edit")
-    public String editUserPost(@ModelAttribute("edituser") User user){
+    @PostMapping("/admin/{id}")
+    public String editUserPost(@ModelAttribute("user") User user){
 
         userService.editUser(user);
 
         return "redirect:/admin";
     }
-    @DeleteMapping("/admin/delete/{id}")
+    @DeleteMapping("/admin/{id}")
     public String deleteId(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
