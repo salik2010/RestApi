@@ -20,7 +20,7 @@
 
 <body>
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" th:text="${userRole.username} + ' with roles: '+ ${userRole.getRoleUser()}" href="#">ЕМАИЛ И
+    <a class="navbar-brand" th:text="${userRole.email} + ' with roles: '+ ${userRole.getRoleUser()}" href="#">ЕМАИЛ И
         РОЛЬ</a>
     </div>
     <a th:href="@{/logout}" class="btn btn-link text-white-50">Logout</a>
