@@ -37,7 +37,13 @@ public class MainController {
 
         return "user";
     }
+    @GetMapping("/userOff")
+    public String authenticatedPageOff( Model model,Principal principal) {
+        User user = userService.selectUser(principal.getName());
+        model.addAttribute("userRole",user);
 
+        return "userOff";
+    }
     @GetMapping("/admin")
     public String adminPage(Principal principal, Model model) {
         List<User> allUser=userService.getAll();
