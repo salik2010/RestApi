@@ -34,6 +34,11 @@ public class MainController {
     public MainController(UserService userService) {
         this.userService = userService;
     }
+
+
+
+
+
 //    @ResponseBody
 //    @GetMapping("/user")
 //    public User authenticatedPage( Model model,Principal principal) {
