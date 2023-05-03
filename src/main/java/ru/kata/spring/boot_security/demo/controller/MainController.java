@@ -71,19 +71,21 @@ public class MainController {
         return roleall;
     }
 
-    @PostMapping("/admin")
-    public User newUserPost(@RequestBody User user) {
+//    @PostMapping("/admin")
+//    public User newUserPost(@RequestBody User user) {
+//
+//        userService.newUser(user);
+//
+//        return user;
+//    }
 
-        userService.newUser(user);
+//    @PutMapping("/admin")
+//    public User editUserPost(@RequestBody User user){
+//        userService.editUser(user);
+//        return user;
+//    }
 
-        return user;
-    }
 
-    @PutMapping("/admin")
-    public User editUserPost(@RequestBody User user){
-        userService.editUser(user);
-        return user;
-    }
 //    @DeleteMapping("/admin/{id}")
 //    public String deleteId(@PathVariable("id") Long id) {
 //        userService.deleteUser(id);
