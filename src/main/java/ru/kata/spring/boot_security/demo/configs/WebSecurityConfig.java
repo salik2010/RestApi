@@ -40,31 +40,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userServiceimp);
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/**", "/index").permitAll()
-//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-//                .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
-//                .antMatchers("/userOff/**").hasAnyRole("USER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .successHandler(successUserHandler)
-//                .permitAll()
-//                .and()
-//                .logout()
-//                //.logoutUrl("/logout")
-//                //.logoutSuccessUrl("/login")
-//                .permitAll();
-//
-//    }
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/**", "/index").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/userOff/**").hasAnyRole("USER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .successHandler(successUserHandler)
+                .permitAll()
+                .and()
+                .logout()
+                //.logoutUrl("/logout")
+                //.logoutSuccessUrl("/login")
+                .permitAll();
+
     }
+//    @Override
+//    protected void configure(HttpSecurity httpSecurity) throws Exception{
+//        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
+//    }
     @Override
     public void configure(WebSecurity web) throws Exception {
         web

@@ -1,37 +1,20 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
 
-import ru.kata.spring.boot_security.demo.security.SecurityUserDetails;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
-@RestController
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
-public class MainController {
+public class RestController {
     private final UserService userService;
 
-    public MainController(UserService userService) {
+    public RestController(UserService userService) {
         this.userService = userService;
     }
 
@@ -57,7 +40,7 @@ public class MainController {
 
     @GetMapping("/admin")
     public List<User> adminPage() {
-        List<User> allUser=userService.getAll();
+
         //List<Role> roleall=userService.getRole();
         //User user = userService.selectUser(principal.getName());
 
@@ -68,7 +51,7 @@ public class MainController {
 //        model.addAttribute("name",principal);
 //        model.addAttribute("rolles",userService.getRole());
 //        model.addAttribute("newuser",new User());
-        return allUser;
+        return userService.getAll();
     }
     @GetMapping("/allrole")
     public List<Role> rolePage() {

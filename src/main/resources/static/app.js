@@ -1,24 +1,34 @@
-// const a=document.getElementById('Well')
-//
-// console.dir(a.textContent)
-alert('eeeee')
+const usersListUrl = 'http://localhost:8080/api/admin';
+let output = '';
+let roleLet;
 
-// fetch('http://localhost:8080/admin')
-//     .then(response=>response.text())
-//     // .then(date=>document.getElementById('Well').innerHTML=JSON.stringify(date))
-//     .then(response=>{
-//         console.log(response)
-//     })
-async function fetchMovies() {
-    const response = await fetch('api/admin');
-    // ждем выполнения запроса
-    console.log(response);
+
+const usersTable = document.getElementById('users-table')
+const listAllUsers = (users) => {
+    users.forEach(user => {
+        roleLet = '';
+        user.roles.forEach((role) => roleLet += role.nameToString + " ");
+        output += `<tr>
+                <th><p>${user.id} </p></th>
+                <th><p>${user.username} </p></th>
+                <th><p>${user.lastname} </p></th>
+                <th><p>${user.age} </p></th>
+                <th><p>${user.email} </p></th>
+                <th><p>${roleLet}</p></th>                        
+                <th>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#editModal" id="editButton" data-uid=${user.id}>Edit
+                    </button>
+                </th>
+                <th>
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#deleteModal" id="deleteButton" data-uid=${user.id}>Delete
+                    </button>
+                </th>
+        </tr>`;
+    });
+    usersTable.innerHTML = output;
 }
-
-// fetch('http://localhost:8080/admin')
-//     .then((response) => {
-//         return response.json();
-//     })
-//     .then((data) => {
-//         console.log(data);
-//     });
+fetch(usersListUrl)
+    .then(res => res.json())
+    .then(data => listAllUsers(data));

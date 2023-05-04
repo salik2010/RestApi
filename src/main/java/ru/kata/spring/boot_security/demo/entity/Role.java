@@ -70,4 +70,7 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return  name;
     }
+    public String getNameToString() {
+        return toString();
+    }
 }
