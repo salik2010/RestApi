@@ -37,19 +37,7 @@ fetch(usersListUrl)
     .then(data => listAllUsers(data));
 
 
-const selectRoleForm = document.getElementById('roles');
 
-
-fetch(rolesListUrl)
-    .then(res => res.json())
-    .then(data => {
-        let options = '';
-        for (const [k, v] of Object.entries(data)) {
-            options += `<option value="${k}">${v.name}</option>`;
-        }
-        selectRoleForm.innerHTML = options;
-    })
-    .catch(err => console.error(err));
 
 const createUserForm = document.getElementById('creating-user-form');
 
