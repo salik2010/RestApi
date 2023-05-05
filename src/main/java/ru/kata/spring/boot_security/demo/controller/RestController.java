@@ -67,10 +67,10 @@ public class RestController {
         return roleList;
     }
 
-    @PostMapping("/users")
-    public User newUserPost(@RequestBody User user) {
+    @PostMapping(value = "/users")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         userService.newUser(user);
-        return user;
+        return ResponseEntity.ok(user);
     }
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable("id") Long id) {
