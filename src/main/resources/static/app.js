@@ -116,9 +116,7 @@ editModalForm.addEventListener('submit', (e) => {
     const emailById = document.getElementById('emailEdit');
     const passwordById = document.getElementById('passwordEdit');
     const roleById = document.getElementById('rolesEdit');
-    console.log(firstNameById.value)
-    console.log(lastNameById.value)
-    console.log(passwordById.value)
+
     const roles = [];
     for (let i = 0; i < roleById.options.length; i++) {
         if (roleById.options[i].selected) {
@@ -189,12 +187,7 @@ createUserForm.addEventListener('submit', (e) => {
     const emailById = document.getElementById('email');
     const passwordById = document.getElementById('password');
     const roleById = document.getElementById('roles');
-    console.log(firstNameById.value)
-    console.log(lastNameById.value)
-    console.log(ageById.value)
-    console.log(emailById.value)
-    console.log(passwordById.value)
-    console.log(roleById)
+
 
     const roles = [];
     for (let i = 0; i < roleById.options.length; i++) {
