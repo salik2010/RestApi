@@ -178,7 +178,8 @@ editModalForm.addEventListener('submit', (e) => {
     const emailById = document.getElementById('emailEdit');
     const passwordById = document.getElementById('passwordEdit');
     const roleById = document.getElementById('rolesEdit');
-
+    console.log(firstNameById.value)
+    console.log(lastNameById.value)
 
     const roles = [];
     for (let i = 0; i < roleById.options.length; i++) {
