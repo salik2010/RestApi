@@ -17,7 +17,9 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService{
     private final UserJpaRepository userJpaRepository;
+
     private final RoleJpaRepository roleJpaRepository;
+
     public UserServiceImp(UserJpaRepository userJpaRepository, RoleJpaRepository roleJpaRepository) {
         this.userJpaRepository = userJpaRepository;
         this.roleJpaRepository = roleJpaRepository;

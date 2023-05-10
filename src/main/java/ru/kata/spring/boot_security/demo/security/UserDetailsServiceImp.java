@@ -15,12 +15,12 @@ import java.util.Optional;
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
 
-    private final UserServiceImp userServiceImp;
+
 
     private final UserJpaRepository userJpaRepository;
 
     public UserDetailsServiceImp(UserServiceImp userServiceImp, UserJpaRepository userJpaRepository) {
-        this.userServiceImp = userServiceImp;
+
         this.userJpaRepository = userJpaRepository;
     }
 

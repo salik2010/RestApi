@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import ru.kata.spring.boot_security.demo.security.UserDetailsServiceImp;
 import ru.kata.spring.boot_security.demo.service.UserService;
 import ru.kata.spring.boot_security.demo.service.UserServiceImp;
 
@@ -26,16 +27,19 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
 
+    private final UserDetailsServiceImp userDetailsServiceImp;
+
     private final UserServiceImp userServiceimp;
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImp userServiceimp) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImp userServiceimp, UserDetailsServiceImp userDetailsServiceImp) {
         this.successUserHandler = successUserHandler;
         this.userServiceimp = userServiceimp;
+        this.userDetailsServiceImp = userDetailsServiceImp;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userServiceimp);
+        auth.userDetailsService(userDetailsServiceImp);
     }
 
     @Override
