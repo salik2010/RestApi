@@ -25,15 +25,13 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
+
     private final UserServiceImp userServiceimp;
+
     public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImp userServiceimp) {
         this.successUserHandler = successUserHandler;
         this.userServiceimp = userServiceimp;
     }
-//    @Bean
-//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -57,21 +55,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                //.logoutUrl("/logout")
-                //.logoutSuccessUrl("/login")
                 .permitAll();
 
     }
-//    @Override
-//    protected void configure(HttpSecurity httpSecurity) throws Exception{
-//        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
-//    }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/icon/**","/resources/templates/js/**");
     }
+
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();

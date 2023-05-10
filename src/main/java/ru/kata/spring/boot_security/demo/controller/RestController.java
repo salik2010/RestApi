@@ -27,39 +27,10 @@ public class RestController {
         this.userService = userService;
     }
 
-//    @ResponseBody
-//    @GetMapping("/user")
-//    public User authenticatedPage( Model model,Principal principal) {
-//        User user = userService.selectUser(principal.getName());
-//        model.addAttribute("userRole",user);
-//
-//        return user;
-//    }
-//    @GetMapping("/userOff")
-//    public String authenticatedPageOff( Model model,Principal principal) {
-//        User user = userService.selectUser(principal.getName());
-//        model.addAttribute("userRole",user);
-//
-//        return "userOff";
-//    }
-
     @GetMapping("/admin")
     public List<User> adminPage() {
-
-        //List<Role> roleall=userService.getRole();
-        //User user = userService.selectUser(principal.getName());
-
-       // model.addAttribute("userRole",user);
-
-//        model.addAttribute("users",allUser);
-//        model.addAttribute("allroles",roleall);
-//        model.addAttribute("name",principal);
-//        model.addAttribute("rolles",userService.getRole());
-//        model.addAttribute("newuser",new User());
         return userService.getAll();
     }
-
-
 
     @GetMapping("/roles")
     public List<Role> allRoles() {
@@ -69,9 +40,10 @@ public class RestController {
 
     @PostMapping(value = "/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        userService.newUser(user);
+        userService.create(user);
         return ResponseEntity.ok(user);
     }
+
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable("id") Long id) {
 
@@ -89,6 +61,5 @@ public class RestController {
     public void delete(@PathVariable("id") Long id) {
         userService.deleteUser(id);
     }
-
 
 }

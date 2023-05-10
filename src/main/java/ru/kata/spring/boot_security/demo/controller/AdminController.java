@@ -13,7 +13,6 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
         private UserService userService;
 
         @Autowired
@@ -30,7 +29,5 @@ public class AdminController {
 
             return "admin";
         }
-
-
 
 }

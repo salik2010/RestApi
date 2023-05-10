@@ -21,6 +21,19 @@ import javax.persistence.JoinTable;
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return Objects.equals(id, role.id) && Objects.equals(name, role.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -60,7 +73,6 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-
     @Override
     public String getAuthority() {
         return getName();
@@ -70,6 +82,7 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return  name;
     }
+
     public String getNameToString() {
         return toString();
     }

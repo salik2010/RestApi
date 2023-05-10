@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImp implements UserService,UserDetailsService {
+public class UserServiceImp implements UserService{
     private final UserJpaRepository userJpaRepository;
     private final RoleJpaRepository roleJpaRepository;
     public UserServiceImp(UserJpaRepository userJpaRepository, RoleJpaRepository roleJpaRepository) {
@@ -27,25 +27,25 @@ public class UserServiceImp implements UserService,UserDetailsService {
         return userJpaRepository.findAll();
     }
 
-
-
     public List<Role> getRole(){
         return roleJpaRepository.findAll();
     }
+
     public void addRole(Role role){
         roleJpaRepository.save(role);
     }
+
     @Override
-    public void newUser(User user, Role role) {
+    public void create(User user, Role role) {
 
     }
+
     public User selectUser(String name){
         return userJpaRepository.findUserByUsername(name);
     }
 
-
     @Transactional
-    public boolean newUser(User user){
+    public boolean create(User user){
         Optional<User> userFromDB = userJpaRepository.findByUsername(user.getUsername());
 
         if (userFromDB.isPresent()) {
@@ -61,23 +61,15 @@ public class UserServiceImp implements UserService,UserDetailsService {
     public void deleteUser(Long id){
         userJpaRepository.deleteById(id);
     }
+
     @Transactional
     public User editUser(User user){
 
         return userJpaRepository.save(user);
     }
+
     public User getById(Long id){
         return userJpaRepository.getById(id);
     }
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userJpaRepository.findByUsername(username);
 
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
-        }
-
-        return new SecurityUserDetails(user.get());
-    }
 }

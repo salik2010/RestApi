@@ -13,6 +13,7 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/userOff")
 public class UserController {
+
     private UserService userService;
 
     @Autowired
@@ -26,7 +27,6 @@ public class UserController {
         User user = userService.selectUser(principal.getName());
 
         model.addAttribute("userRole",user);
-
 
         return "userOff";
     }
